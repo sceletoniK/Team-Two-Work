@@ -37,7 +37,7 @@ namespace Team_Two_Work
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 450);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Абоба";
             this.ResumeLayout(false);
 
         }
