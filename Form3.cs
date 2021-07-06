@@ -32,13 +32,22 @@ namespace Team_Two_Work
                 Fields = ProfileFields.BirthDate,
             });
 
+            int n = 0;
+            int value = 0;
+            const int year = 2021;
+
             foreach (User item in fr)
             {
-                //if (item.BirthDate == null || item.BirthDate )
-                //{
-
-                //}
+                if (item.BirthDate != null && item.BirthDate.Length >= 7)
+                {
+                    n++;
+                    value += year - int.Parse(item.BirthDate.Split('.')[2]);
+                }
             }
+
+            label2.Text = $"И ваш возраст: {value / n} !!!";
+            label3.Text = $"Кол-во людей принимавших участие в разгадке: {n}";
+
         }
     }
 }

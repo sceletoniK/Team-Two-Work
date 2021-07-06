@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using VkNet;
 using VkNet.Model;
+using VkNet.Enums.Filters;
 using VkNet.Model.RequestParams;
 
 namespace Team_Two_Work
@@ -24,7 +25,6 @@ namespace Team_Two_Work
         public string token = "";
         public long id;
         public VkApi api;
-        //Form4 L3;
 
         public string getAuthForUser()
         {
@@ -50,7 +50,8 @@ namespace Team_Two_Work
 
                 api.Authorize(new ApiAuthParams
                 {
-                    AccessToken = getAuthForUser()
+                    AccessToken = getAuthForUser(),
+                    Settings = Settings.All
                 });
 
                 var check = api.Users.Get(new long[] { id });
@@ -89,6 +90,12 @@ namespace Team_Two_Work
         private void button2_Click(object sender, EventArgs e)
         {
             Form3 aboba = new Form3(this);
+            aboba.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form4 aboba = new Form4(this);
             aboba.ShowDialog();
         }
     }

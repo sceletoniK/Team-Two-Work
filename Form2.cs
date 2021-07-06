@@ -46,7 +46,7 @@ namespace Team_Two_Work
         {
             try
             {
-                var p = l.api.Users.Get(new long[] { l.id });
+                var p = l.api.Users.Get(new long[] { l.id }, ProfileFields.All);
                 var fr = l.api.Friends.Get(new FriendsGetParams
                 {
                     UserId = l.id,
@@ -59,7 +59,7 @@ namespace Team_Two_Work
                     {"Фамилия", CheckData(p[0].LastName)},
                     {"Пол", CheckData(p[0].Sex)},
                     {"ДР", CheckData(p[0].BirthDate)},
-                    {"Страна", CheckData(p[0].Country)},
+                    {"Страна", CheckData(p[0].Country.Title)},
                     {"Статус", CheckData(p[0].Status)},
                     {"Друзья", CheckArrayData(fr)},
                 };
