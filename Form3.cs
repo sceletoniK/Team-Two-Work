@@ -26,28 +26,34 @@ namespace Team_Two_Work
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var fr = l.api.Friends.Get(new FriendsGetParams
+            try
             {
-                UserId = l.id,
-                Fields = ProfileFields.BirthDate,
-            });
-
-            int n = 0;
-            int value = 0;
-            const int year = 2021;
-
-            foreach (User item in fr)
-            {
-                if (item.BirthDate != null && item.BirthDate.Length >= 7)
+                var fr = l.api.Friends.Get(new FriendsGetParams
                 {
-                    n++;
-                    value += year - int.Parse(item.BirthDate.Split('.')[2]);
+                    UserId = l.id,
+                    Fields = ProfileFields.BirthDate,
+                });
+
+                int n = 0;
+                int value = 0;
+                const int year = 2021;
+
+                foreach (User item in fr)
+                {
+                    if (item.BirthDate != null && item.BirthDate.Length >= 7)
+                    {
+                        n++;
+                        value += year - int.Parse(item.BirthDate.Split('.')[2]);
+                    }
                 }
+
+                label2.Text = $"И ваш возраст: {value / n} !!!";
+                label3.Text = $"Кол-во людей принимавших участие в разгадке: {n}";
             }
-
-            label2.Text = $"И ваш возраст: {value / n} !!!";
-            label3.Text = $"Кол-во людей принимавших участие в разгадке: {n}";
-
+            catch (VkNet.Exception.VkApiMethodInvokeException)
+            {
+                label3.Text = "Пользователь стесняшка и скрыл свой профиль!";
+            }
         }
     }
 }

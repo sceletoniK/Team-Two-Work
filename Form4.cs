@@ -27,16 +27,25 @@ namespace Team_Two_Work
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            var Groups = l.api.Groups.Get(new GroupsGetParams
+            comboBox1.Enabled = true;
+            try
             {
-                UserId = l.id,
-                Extended = true
-            });
+                var Groups = l.api.Groups.Get(new GroupsGetParams
+                {
+                    UserId = l.id,
+                    Extended = true
+                });
 
-            foreach (Group item in Groups)
+                foreach (Group item in Groups)
+                {
+                    aboba.Add(Encoding.UTF8.GetString(Encoding.Default.GetBytes(item.Name)), item);
+                    comboBox1.Items.Add(Encoding.UTF8.GetString(Encoding.Default.GetBytes(item.Name)));
+                }
+            }
+            catch (VkNet.Exception.VkApiMethodInvokeException)
             {
-                aboba.Add(Encoding.UTF8.GetString(Encoding.Default.GetBytes(item.Name)), item);
-                comboBox1.Items.Add(Encoding.UTF8.GetString(Encoding.Default.GetBytes(item.Name)));
+                comboBox1.Enabled = false;
+                textBox1.Text = "Пользователь стесняшка и скрыл профиль!";
             }
         }
 
