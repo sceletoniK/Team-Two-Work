@@ -53,13 +53,17 @@ namespace Team_Two_Work
                     Fields = ProfileFields.FirstName,
                 });
 
+                string counrty;
+                if (p[0].Country == null) counrty = "Не определено";
+                else counrty = p[0].Country.Title;
+
                 Dictionary<string, string> lol = new Dictionary<string, string>
                 {
                     {"Имя", CheckData(p[0].FirstName)},
                     {"Фамилия", CheckData(p[0].LastName)},
                     {"Пол", CheckData(p[0].Sex)},
                     {"ДР", CheckData(p[0].BirthDate)},
-                    {"Страна", CheckData(p[0].Country.Title)},
+                    {"Страна", counrty},
                     {"Статус", CheckData(p[0].Status)},
                     {"Друзья", CheckArrayData(fr)},
                 };
